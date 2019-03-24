@@ -1,0 +1,8 @@
+*.pdf
+
+*.tgz
+*.gz
+*.service
+*.config
+*.conf
+kube*
