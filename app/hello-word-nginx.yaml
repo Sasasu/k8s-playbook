@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello-word
+  labels:
+    app: hello-word
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: hello-word
+  template:
+    metadata:
+      labels:
+        app: hello-word
+    spec:
+      containers:
+        - name: hello-word-nginx
+          image: nginx:1.14
+          resources:
+            limits:
+              memory: "128Mi"
+              cpu: "500m"
+          ports:
+            - containerPort: 80
+              protocol: TCP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: hello-word
+  labels:
+    app: hello-word
+spec:
+  selector:
+    app: hello-word-nginx
+  ports:
+    - port: 80
+      targetPort: 80
