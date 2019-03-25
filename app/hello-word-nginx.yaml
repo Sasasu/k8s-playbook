@@ -37,3 +37,17 @@ spec:
   ports:
     - port: 80
       targetPort: 80
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: hello-word-ingress
+spec:
+  rules:
+    - host: foo.sasasu.me
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: hello-word
+              servicePort: 80
